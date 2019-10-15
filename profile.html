@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>View and change profile</title>
+    </head>
+    <body>
+        <form action="../controller/profileController.php" method="post">
+            Email<input id="email" type="text" name="email">
+            Age<input id="age" type="number" name="age">
+            City<input id="city" type="text" name="city">
+            <input type="submit" name="changeProfile">
+        </form>
+
+        <script>
+            var req = new XMLHttpRequest();
+            req.open("get", "../controller/profileController.php");
+            req.onreadystatechange = function (ev) {
+                var resp = this.responseText;
+                resp = JSON.parse(resp);
+                document.getElementById("email").value = resp.email;
+                document.getElementById("age").value = resp.age;
+                document.getElementById("city").value = resp.city;
+            }
+            req.send();
+        </script>
+    </body>
+</html>
